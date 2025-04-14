@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import HypeButton from "./HypeButton"
 
 export default function Form() {
 const [input, setInput] = useState('')
@@ -28,6 +29,9 @@ return (
     Nice Dub!: “{submittedDub}” 🎉
   </p>
 )}
+
+<HypeButton />
+
 </div>
 )}
 
