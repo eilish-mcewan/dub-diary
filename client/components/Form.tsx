@@ -44,7 +44,8 @@ export default function Form() {
         {dubs.map((d) => (
           <li key={d.id}>      
             <p>{d.dub}</p>
-            <small>{new Date(d.created_at).toLocaleString()}</small>
+            <small>{new Date(d.created_at).toLocaleString('en-NZ', {
+               timeZone: 'Pacific/Auckland',})}</small>
           </li>
       ))}
       </ul>

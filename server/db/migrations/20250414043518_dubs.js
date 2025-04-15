@@ -6,7 +6,7 @@ export function up(knex) {
   return knex.schema.createTable('dubs', (table) => {
    table.increments('id')
    table.string('dub')
-   table.timestamps(true,true)
+   table.timestamp('created_at').defaultTo(knex.raw(`(datetime('now', 'localtime'))`))
   })
 };
 
