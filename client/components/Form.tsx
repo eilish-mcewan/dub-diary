@@ -1,39 +1,57 @@
-import React, { useState } from "react"
-import HypeButton from "./HypeButton"
+import React, { useEffect, useState } from 'react'
+import HypeButton from './HypeButton'
+import { getDubs, postDub } from '../apis/dubsapi' 
 
-export default function Form() {
-const [input, setInput] = useState('')
-const [submittedDub, setSubmittedDub] = useState('')
-
-function handleSubmit(e: React.FormEvent) {
-  e.preventDefault()
-  setSubmittedDub(input)
-  setInput('')
+type Dub = {
+  id: number
+  dub: string
+  created_at: string 
 }
 
+export default function Form() {
+  const [input, setInput] = useState('')
+  const [dubs, setDubs] = useState<Dub[]>([])
 
-return (
-<div>
-  <form onSubmit={handleSubmit}>
-    <input type= 'text'
-    placeholder= "What's your W?"
-    onChange={(e) => setInput(e.target.value)}
-    />
-    <button type= "submit">
-    Celebrate!!
-    </button>
-  </form>
+  useEffect(() => {
+    async function fetchDubs() {
+      const data = await getDubs()
+      setDubs(data)
+    }
+    fetchDubs()
+  }, [])
 
-{submittedDub && (
-  <p>
-    Nice Dub!: “{submittedDub}” 🎉
-  </p>
-)}
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    await postDub(input)
+    const updated = await getDubs()
+    setDubs(updated)
+    setInput('')
+  }
 
-<HypeButton />
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="What's your W?"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button type="submit">Submit</button>
+      </form>
 
-</div>
-)}
+      <ul>
+        {dubs.map((d) => (
+          <li key={d.id}>      
+            <p>{d.dub}</p>
+            <small>{new Date(d.created_at).toLocaleString()}</small>
+          </li>
+      ))}
+      </ul>
 
+      <HypeButton />
+    </div>
+  )
+}
 
 
