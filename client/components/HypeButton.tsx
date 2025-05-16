@@ -25,17 +25,13 @@ export default function HypeButton() {
  ]
 
 
-  return (
-    <div>
-      <button onClick={handleClick}>
-        Hype Me Up!
-      </button>
+ return (
+  <div className="hypebutton-container">
+    <button onClick={handleClick}>Hype Me Up!</button>
 
-      {affirmation && (
-        <p>
-          {affirmation}
-        </p>
-      )}
-    </div>
-  )
+    {affirmation && (
+      <p className="affirmation-text">{affirmation}</p>
+    )}
+  </div>
+)
 }

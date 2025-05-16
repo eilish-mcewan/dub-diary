@@ -29,7 +29,10 @@ export default function Form() {
   }
 
   return (
-    <div>
+    <div className="form-wrapper">
+  <div className="sticker-logo">
+    <img src= '../client/images/ChatGPT Image Apr 22, 2025, 06_59_52 PM.png' alt="Dub Diary Logo" />
+  </div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -50,8 +53,13 @@ export default function Form() {
       ))}
       </ul>
 
+      <div className="sticker-corner">
+    <img src="../client/images/sticker-pack.png" alt="Cute sticker pack" />
+      </div>
+  
+
       <HypeButton />
-    </div>
+      </div>
   )
 }
 
