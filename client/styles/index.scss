@@ -138,7 +138,12 @@ button {
   }
 }
 }
-
+@media (max-width: 600px) {
+  .sticker-logo,
+  .sticker-corner {
+    display: none;
+  }
+}
 .sticker-logo {
   position: absolute;
   top: 2rem;
@@ -146,9 +151,10 @@ button {
   z-index: 10;
   transform: rotate(-4deg);
   padding: 0.5rem;
+  max-width: 150px;
 
   img {
-    width: 400px;
+    width: 100%;
     height: auto;
     display: block;
   }
@@ -159,9 +165,10 @@ button {
   left: 10rem;
   z-index: 9999;
   pointer-events: none;
+  max-width: 150px;
 
   img {
-    width: 400px;
+    width: 100%;
     height: auto;
     opacity: 0.95;
   }
